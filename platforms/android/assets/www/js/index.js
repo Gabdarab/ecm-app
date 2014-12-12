@@ -3,43 +3,26 @@ function onLoad(){
 	document.addEventListener("deviceready", onDeviceReady(), false);
 };
 
-/*
-function onDeviceReady() {
-    alert(device.uuid);
-	
-var model=window.device.model;
-var platfrom=window.device.platform;
-var version=window.device.version;
-var uuid=window.device.uuid;
-
-alert("model :"+ model+"\nplatform :"+ platform+"\nversion :"+version+"\nuuid :"+uuid);
-
-};
-*/
-
-
 function onDeviceReady(){
-
 	navigator.geolocation.getCurrentPosition(geolocationSuccess,geolocationError);
-
 };
 
 
 function geolocationSuccess(position) {
     alert('Latitude: '          + position.coords.latitude          + '\n' +
           'Longitude: '         + position.coords.longitude         + '\n' +
-          'Altitude: '          + position.coords.altitude          + '\n' +
-          'Accuracy: '          + position.coords.accuracy          + '\n' +
-          'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
-          'Heading: '           + position.coords.heading           + '\n' +
-          'Speed: '             + position.coords.speed             + '\n' +
+          //'Altitude: '          + position.coords.altitude          + '\n' +
+          //'Accuracy: '          + position.coords.accuracy          + '\n' +
+          //'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
+          //'Heading: '           + position.coords.heading           + '\n' +
+          //'Speed: '             + position.coords.speed             + '\n' +
           'Timestamp: '         + position.timestamp                + '\n');
 };
 
 function geolocationError(error) {
     alert('code: '    + error.code    + '\n' +
           'message: ' + error.message + '\n');
-}
+};
 
 
 
