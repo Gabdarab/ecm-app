@@ -4,9 +4,8 @@ function onLoad(){
 };
 
 function onDeviceReady(){
-	navigator.geolocation.getCurrentPosition(geolocationSuccess,geolocationError);
+	navigator.geolocation.getCurrentPosition(geolocationSuccess,geolocationError,{enableHighAccuracy:false, timeout: 10000, maximumAge:0});
 };
-
 
 function geolocationSuccess(position) {
     alert('Latitude: '          + position.coords.latitude          + '\n' +
@@ -19,16 +18,14 @@ function geolocationSuccess(position) {
           'Timestamp: '         + position.timestamp                + '\n');
 };
 
+
 function geolocationError(error) {
     alert('code: '    + error.code    + '\n' +
           'message: ' + error.message + '\n');
+    //alert('Error getting location.');
 };
 
-
-
 /*
-
-
 
 localStorage.removeItem("localappview");
 
