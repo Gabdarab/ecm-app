@@ -1,12 +1,21 @@
-/*
-ecmApp();
 
-function ecmApp(){
-	document.addEventListener("deviceready", onDeviceReady(), false);
-};
+//ecmApp();
+
+//function ecmApp(){
+document.addEventListener("deviceready", onDeviceReady(), false);
+//};
 
 function onDeviceReady(){
+	
 
+
+
+
+	//localStorage.removeItem("user");
+	//console.log(JSON.parse(localStorage.getItem("user")).vorname);
+
+
+	//submit registration button
 	$( "#submitreg" ).bind( "click",function(){
 		if ($("#textinput-vorname").val().length===0 | $("#textinput-nachname").val().length===0 | $("#textinput-regcode").val().length===0){
 			alert("Bitte überprüfen Sie Ihre Eingabe!");
@@ -30,10 +39,10 @@ function onDeviceReady(){
 		"vorname":$("#textinput-vorname").val(),
 		"nachname":$("#textinput-nachname").val(),
 		"regcode":$("#textinput-regcode").val(),
-		"deviceuuid":device.uuid,
-		"devicemodel":device.model, 
-		"deviceplatform":device.platform, 
-		"deviceversion":device.version 
+		//"deviceuuid":device.uuid,
+		//"devicemodel":device.model, 
+		//"deviceplatform":device.platform, 
+		//"deviceversion":device.version 
 		};
 		localStorage.setItem("user",JSON.stringify(user));
 		var restoredUser=JSON.parse(localStorage.getItem("user"));
@@ -64,12 +73,7 @@ function onDeviceReady(){
 			alert("Unbekannter fehler bei der Registrierung.");
 		}
 	};
-
 };
-*/
-
-
-
 
 
 //var restoredUser=JSON.parse(localStorage.getItem("user"));
@@ -77,7 +81,7 @@ function onDeviceReady(){
 
 
 
-
+/* OK! 27.12.2014. determining location
 onLoad();
 
 function onLoad(){
@@ -91,22 +95,19 @@ function onDeviceReady(){
 function geolocationSuccess(position) {
     alert('Latitude: '          + position.coords.latitude          + '\n' +
           'Longitude: '         + position.coords.longitude         + '\n' +
-          //'Altitude: '          + position.coords.altitude          + '\n' +
           //'Accuracy: '          + position.coords.accuracy          + '\n' +
-          //'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
-          //'Heading: '           + position.coords.heading           + '\n' +
-          //'Speed: '             + position.coords.speed             + '\n' +
-          'Timestamp: '         + position.timestamp                + '\n');
+          'Timestamp: '         + new Date(position.timestamp).getFullYear()                + '\n');
 };
 
 
 function geolocationError(error) {
-    alert('code: '    + error.code    + '\n' +
-          'message: ' + error.message + '\n');
-    //alert('Error getting location.');
+    //alert('code: '    + error.code    + '\n' +
+    //      'message: ' + error.message + '\n');
+    alert('Error getting location.');
 };
+*/
 
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /*
 //localStorage.removeItem("localappview");
 
@@ -139,27 +140,5 @@ function checkappview(){
 };
 
 */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

@@ -1,16 +1,20 @@
 
-ecmApp();
+//ecmApp();
 
-function ecmApp(){
-	document.addEventListener("deviceready", onDeviceReady(), false);
-};
+//function ecmApp(){
+document.addEventListener("deviceready", onDeviceReady(), false);
+//};
 
 function onDeviceReady(){
+	
+
+
+
 
 	//localStorage.removeItem("user");
 	//console.log(JSON.parse(localStorage.getItem("user")).vorname);
 
-/*
+
 	//submit registration button
 	$( "#submitreg" ).bind( "click",function(){
 		if ($("#textinput-vorname").val().length===0 | $("#textinput-nachname").val().length===0 | $("#textinput-regcode").val().length===0){
@@ -69,9 +73,7 @@ function onDeviceReady(){
 			alert("Unbekannter fehler bei der Registrierung.");
 		}
 	};
-*/
 };
-
 
 
 //var restoredUser=JSON.parse(localStorage.getItem("user"));
@@ -79,7 +81,7 @@ function onDeviceReady(){
 
 
 
-/* OK! 27.12.2014
+/* OK! 27.12.2014. determining location
 onLoad();
 
 function onLoad(){
@@ -138,27 +140,5 @@ function checkappview(){
 };
 
 */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
