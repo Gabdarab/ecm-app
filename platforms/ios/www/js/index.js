@@ -1,19 +1,15 @@
+//push notification simulieren
+var pushvariable=1;
 
-//ecmApp();
 
-//function ecmApp(){
 document.addEventListener("deviceready", onDeviceReady(), false);
-//};
 
 function onDeviceReady(){
-	
-
-
-
-
 	//localStorage.removeItem("user");
-	//console.log(JSON.parse(localStorage.getItem("user")).vorname);
-
+	console.log(checkReg());
+	addList();
+	afterPush(pushvariable);
+	//homescreen(checkReg());
 
 	//submit registration button
 	$( "#submitreg" ).bind( "click",function(){
@@ -23,14 +19,24 @@ function onDeviceReady(){
 			if (confirm("Haben Sie ihren richtigen Namen angegeben? \nIst der"+ 
 			"angegebene Registrierungscode identisch mit dem in ihrer E-Mail?")===true){
 				var regUserReturn=regUser();
-				afterReg(regUserReturn);
+				//registrierungsansicht nach reg. anpassen
+				if(regUserReturn==="success"){
+					var reguser=JSON.parse(localStorage.getItem("user"));
+					afterReg(reguser);
+				}else if(_regReturn==="notsuccess"){
+					alert("Registration fehlgeschlagen. Bitte wiederholen Sie die Registrierung zu einem späteren Zeitpunkt.");
+				}else{
+					alert("Unbekannter fehler bei der Registrierung.");
+				};
 			}else{
 				//Eingabe löschen???
 			};
 		}; 
 	});
 
-	//function that checks registration success + alert. Change success variables to HTTP responses
+	//function that checks registration success + alert
+	//function needs  to additionally send HTTP PUT request to server with registration data
+	//server needs to send back confirmation that registration worked, only then may JSON be saved in localstorage
 	function regUser(){
 		regsuccess="success"
 		regnotsuccess="notsuccess"
@@ -44,101 +50,51 @@ function onDeviceReady(){
 		//"deviceplatform":device.platform, 
 		//"deviceversion":device.version 
 		};
+		//localStorage.setItem("registered",JSON.stringify(true));
 		localStorage.setItem("user",JSON.stringify(user));
-		var restoredUser=JSON.parse(localStorage.getItem("user"));
-		//alert("restored:"+restoredUser.deviceuuid, \n restoredUser.deivemodel, \n restoredUser.deviceplatfrom, \n restoredUser.deviceversion);
 		return regsuccess
 	};
 
 	//UI nach Registrierung anpasen, nur wenn Registrierung gelungen ist!
+	//function stays as is, not affected by web service
 	function afterReg(_regReturn){
-		//Change success variables to HTTP responses
-		if(_regReturn==="success"){
 			$.mobile.changePage( "#page-referral", { transition: "slide", changeHash: false });
-			$("#textinput-vorname").attr("placeholder",$("#textinput-vorname").val());
+			$("#textinput-vorname").attr("placeholder",_regReturn.vorname);
 			$("#textinput-vorname").attr("disabled","disabled");
-			$("#textinput-nachname").attr("placeholder",$("#textinput-nachname").val());
+			$("#textinput-nachname").attr("placeholder",_regReturn.nachname);
 			$("#textinput-nachname").attr("disabled","disabled");
-			$("#textinput-regcode").attr("placeholder",$("#textinput-regcode").val());
+			$("#textinput-regcode").attr("placeholder",_regReturn.regcode);
 			$("#textinput-regcode").attr("disabled","disabled");
-			$("#submitreg").button("disable");
-			$("#submitreg").button("refresh");
 			$(".ui-disabled").removeClass("ui-disabled");
 			$("#page-reg").find("p").text("Erklärung zur App: Sie haben sich mit den" + 
 				" unten angezeigten Daten bereits registriert. Eine zweite Registrierung" + 
 				"ist nicht möglich. Für weitere Informationen clicken Sie bitte auf 'INFO'.");
-		}else if(_regReturn==="notsuccess"){
-			alert("Registration fehlgeschlagen. Bitte wiederholen Sie die Registrierung zu einem späteren Zeitpunkt.");
-		}else{
-			alert("Unbekannter fehler bei der Registrierung.");
-		}
+			$(document).ready();
+			$("#submitreg").button("disable");
+			$("#submitreg").button("refresh");
+	};
+
+	function afterPush(_pushvariable){
+		if(_pushvariable===1){
+			$("#coupon-text").text("Beschreibung Angebot Mathäser.");
+			$("#contact-overview").attr("style","");
+		};
+	};
+
+	function checkReg(){
+		var registereduser=JSON.parse(localStorage.getItem("user"));
+		return registereduser;
+	};
+
+	function homescreen(_registereduser){
+		if(_registereduser!=null){
+			afterReg(_registereduser);
+		}else{};
 	};
 };
 
-
-//var restoredUser=JSON.parse(localStorage.getItem("user"));
-//	console.log("two:"+restoredUser.vorname);
-
-
-
-/* OK! 27.12.2014. determining location
-onLoad();
-
-function onLoad(){
-	document.addEventListener("deviceready", onDeviceReady(), false);
-};
-
-function onDeviceReady(){
-	navigator.geolocation.getCurrentPosition(geolocationSuccess, geolocationError,{enableHighAccuracy:false, timeout: 10000, maximumAge:0});
-};
-
-function geolocationSuccess(position) {
-    alert('Latitude: '          + position.coords.latitude          + '\n' +
-          'Longitude: '         + position.coords.longitude         + '\n' +
-          //'Accuracy: '          + position.coords.accuracy          + '\n' +
-          'Timestamp: '         + new Date(position.timestamp).getFullYear()                + '\n');
-};
-
-
-function geolocationError(error) {
-    //alert('code: '    + error.code    + '\n' +
-    //      'message: ' + error.message + '\n');
-    alert('Error getting location.');
-};
-*/
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /*
-//localStorage.removeItem("localappview");
-
-homeview(checkappview());
-
-function homeview(_view){
-	if (_view===null){
-		$("#home-body").html(HTMLregview);
-	} else if ((_view===1)){
-		$("#home-body").html(HTMLsecondview);
-	} else if ((_view===2)){
-		$("#home-body").html(HTMLcouponview);
-	} 
-};
-
-};
-
-//storing ifregistered variable. Now stored on device with localstorage. 
-//Maybe change to storage on server to avoid problems such as multiple registrations.
-//check UUID everytime app is opened.
-function storeregistered(){
-	var datatostore=JSON.stringify(1);
-	localStorage.setItem('localappview',datatostore)
-};
-
-//determine appview from variable in localstorage. Possibly server-side storage if variable is better for persistence
-function checkappview(){
-	var appview = JSON.parse(localStorage.getItem('localappview'));
-	return appview;
-};
-
+if(isregistered){
+			var registereduser=JSON.parse(localStorage.getItem("user").vorname);
+		};
 */
-
-

@@ -40,7 +40,7 @@
                     <label for="textinput-regcode">Registrierungscode:</label>
                     <input type="text" name="textinput-regcode" id="textinput-regcode" placeholder="Registrierungscode" value=""> 
                 </div> 
-                <input type="submit" value="submit" id="submitreg"> 
+                <button type="button" id="submitreg">Registrieren</button> 
             </div>
             <div data-role="footer" data-id="persist" data-position="fixed" style="overflow:hidden;" data-theme="a">
                 <div data-role="navbar">
@@ -87,13 +87,13 @@
                 <ul id="contactlist" data-role="listview" data-divider-theme="a" data-inset="true">
                     <li id="startlist" data-role="list-divider" role="heading" style="text-align:center"><h1>Standort Ihrer Kontakte</h1></li>
                 </ul>
-                <button>Aktualisieren</button>
+                <button type="button" id="refreshlist">Aktualisieren</button>
             </div>
             <div data-role="footer" data-id="persist" data-position="fixed" style="overflow:hidden;" data-theme="a">
                 <div data-role="navbar">
                     <ul>
-                        <li><a href="#page-reg" class="ui-disabled" data-transition="slide" data-direction="reverse">Registrieren</a></li>
-                        <li><a href="#page-referral" class="ui-disabled" data-transition="slide" data-direction="reverse">App Empfehlen</a></li>
+                        <li><a href="#page-reg" data-transition="slide" data-direction="reverse">Registrieren</a></li>
+                        <li><a href="#page-referral" data-transition="slide" data-direction="reverse">App Empfehlen</a></li>
                         <li><a href="#" class="ui-btn-active ui-state-persist">Angebote Ansehen</a></li>
                     </ul>
                 </div>

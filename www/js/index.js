@@ -5,18 +5,11 @@ var pushvariable=1;
 document.addEventListener("deviceready", onDeviceReady(), false);
 
 function onDeviceReady(){
+	//localStorage.removeItem("user");
+	console.log(checkReg());
 	addList();
 	afterPush(pushvariable);
-
-
-	//localStorage.removeItem("user");
-	//var restoredUser=JSON.parse(localStorage.getItem("user"));
-	if(JSON.parse(localStorage.getItem("user")).vorname===null){
-		console.log("no local storage.");
-	}else{
-		console.log(JSON.parse(localStorage.getItem("user")).vorname);
-	};
-
+    homescreen(checkReg());
 
 	//submit registration button
 	$( "#submitreg" ).bind( "click",function(){
@@ -28,7 +21,8 @@ function onDeviceReady(){
 				var regUserReturn=regUser();
 				//registrierungsansicht nach reg. anpassen
 				if(regUserReturn==="success"){
-					afterReg();
+					var reguser=JSON.parse(localStorage.getItem("user"));
+					afterReg(reguser);
 				}else if(_regReturn==="notsuccess"){
 					alert("Registration fehlgeschlagen. Bitte wiederholen Sie die Registrierung zu einem späteren Zeitpunkt.");
 				}else{
@@ -56,6 +50,7 @@ function onDeviceReady(){
 		//"deviceplatform":device.platform, 
 		//"deviceversion":device.version 
 		};
+		//localStorage.setItem("registered",JSON.stringify(true));
 		localStorage.setItem("user",JSON.stringify(user));
 		return regsuccess
 	};
@@ -64,19 +59,34 @@ function onDeviceReady(){
 	//function stays as is, not affected by web service
 	function afterReg(_regReturn){
 			$.mobile.changePage( "#page-referral", { transition: "slide", changeHash: false });
-			$("#textinput-vorname").attr("placeholder",$("#textinput-vorname").val());
+			$("#textinput-vorname").attr("placeholder",_regReturn.vorname);
 			$("#textinput-vorname").attr("disabled","disabled");
-			$("#textinput-nachname").attr("placeholder",$("#textinput-nachname").val());
+			$("#textinput-nachname").attr("placeholder",_regReturn.nachname);
 			$("#textinput-nachname").attr("disabled","disabled");
-			$("#textinput-regcode").attr("placeholder",$("#textinput-regcode").val());
+			$("#textinput-regcode").attr("placeholder",_regReturn.regcode);
 			$("#textinput-regcode").attr("disabled","disabled");
-			$("#submitreg").button("disable");
-			$("#submitreg").button("refresh");
+			$("#submitreg").attr("disabled","disabled");
 			$(".ui-disabled").removeClass("ui-disabled");
 			$("#page-reg").find("p").text("Erklärung zur App: Sie haben sich mit den" + 
 				" unten angezeigten Daten bereits registriert. Eine zweite Registrierung" + 
 				"ist nicht möglich. Für weitere Informationen clicken Sie bitte auf 'INFO'.");
 	};
+
+	function regView(_regReturn){
+			$.mobile.navigate("#page-referral");
+			$("#textinput-vorname").attr("placeholder",_regReturn.vorname);
+			$("#textinput-vorname").attr("disabled","disabled");
+			$("#textinput-nachname").attr("placeholder",_regReturn.nachname);
+			$("#textinput-nachname").attr("disabled","disabled");
+			$("#textinput-regcode").attr("placeholder",_regReturn.regcode);
+			$("#textinput-regcode").attr("disabled","disabled");
+			$(".ui-disabled").removeClass("ui-disabled");
+			$("#submitreg").attr("disabled","disabled");
+			$("#page-reg").find("p").text("Erklärung zur App: Sie haben sich mit den" + 
+				" unten angezeigten Daten bereits registriert. Eine zweite Registrierung" + 
+				"ist nicht möglich. Für weitere Informationen clicken Sie bitte auf 'INFO'.");
+	};
+
 
 	function afterPush(_pushvariable){
 		if(_pushvariable===1){
@@ -84,4 +94,21 @@ function onDeviceReady(){
 			$("#contact-overview").attr("style","");
 		};
 	};
+
+	function checkReg(){
+		var registereduser=JSON.parse(localStorage.getItem("user"));
+		return registereduser;
+	};
+
+	function homescreen(_registereduser){
+		if(_registereduser!=null){
+			regView(_registereduser);
+		}else{};
+	};
 };
+
+/*
+if(isregistered){
+			var registereduser=JSON.parse(localStorage.getItem("user").vorname);
+		};
+*/

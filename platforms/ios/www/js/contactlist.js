@@ -1,15 +1,9 @@
-//Standort Mathäser (nur Beispiel Koordinaten  nicht richtig)
+//Standort Mathäser (richtigen Koordinaten müssen noch ermittelt werden!)
 var malat=44.723595;
 var malon=-93.176812;
+//dieses JSON muss per HTTP GET request vom server angefordert und in localstorage zwischengespeichert werden!
 var contacts={
 	"person":[
-		{
-			"vorname":"Anne",
-			"nachname":"Weiss",
-			"longitude":"44.750453",
-			"latitude":"-93.204766",
-			"time":""
-		},
 		{
 			"vorname":"Peter",
 			"nachname":"Klein",
@@ -18,10 +12,10 @@ var contacts={
 			"time":""
 		},
 		{
-			"vorname":"Petra",
-			"nachname":"Schwarz",
-			"longitude":"44.736285",
-			"latitude":"-93.207487",
+			"vorname":"Anne",
+			"nachname":"Weiss",
+			"longitude":"44.750453",
+			"latitude":"-93.204766",
 			"time":""
 		},
 		{
@@ -30,17 +24,19 @@ var contacts={
 			"longitude":"44.788673",
 			"latitude":"-93.205671",
 			"time":""
+		},
+		{
+			"vorname":"Petra",
+			"nachname":"Schwarz",
+			"longitude":"44.736285",
+			"latitude":"-93.207487",
+			"time":""
 		}
+		
 	]
 };
 
-document.addEventListener("deviceready", onDeviceReady(), false);
-
-function onDeviceReady(){
-	addlist();
-};
-
-function addlist(){
+function addList(){
 	//testarray beinhaltet position und distanz der personen
 	var testarray=[];
 	for(item in contacts.person){

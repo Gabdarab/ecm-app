@@ -14,6 +14,8 @@
         <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
         <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
         <script type="text/javascript" src="lib/underscorejs-min.js"></script>
+        <script type="text/javascript" src="js/contactlist.js"></script>
+        <script type="text/javascript" src="js/geolocation.js"></script>
         <title>Mathäser App</title>
     </head>
 
@@ -73,30 +75,20 @@
             </div>
         </div>
 
--->
         <div data-role="page" data-title="Angebote Ansehen" id="page-coupon">
             <div data-role="header" data-id="persist" data-position="fixed" data-theme="a">
                 <h1>Mathäser App</h1>
                 <a href="#page-info" data-icon="gear" class="ui-btn-right" data-transition="flip">Info</a>
             </div>
             <div data-role="main" class="ui-content">
-                <p>Coupons page.</p>
+                <p id="coupon-text">In kürze erhalten Sie aufregende Angebote von Mathäser!</p>
             </div>
-
-
-
-
-            <div data-role="content">
+            <div id="contact-overview" data-role="content" style="display:none;">
                 <ul id="contactlist" data-role="listview" data-divider-theme="a" data-inset="true">
                     <li id="startlist" data-role="list-divider" role="heading" style="text-align:center"><h1>Standort Ihrer Kontakte</h1></li>
                 </ul>
+                <button>Aktualisieren</button>
             </div>
-
-
-
-
-
-
             <div data-role="footer" data-id="persist" data-position="fixed" style="overflow:hidden;" data-theme="a">
                 <div data-role="navbar">
                     <ul>
@@ -127,7 +119,6 @@
 
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
-        <script type="text/javascript" src="js/coupon.js"></script>
 
     </body>
 
