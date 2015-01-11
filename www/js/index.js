@@ -5,9 +5,9 @@ var pushvariable=1;
 document.addEventListener("deviceready", onDeviceReady(), false);
 
 function onDeviceReady(){
-	//localStorage.removeItem("user");
+	localStorage.removeItem("user");
 	console.log(checkReg());
-	addList();
+	//addList();
 	afterPush(pushvariable);
     homescreen(checkReg());
 

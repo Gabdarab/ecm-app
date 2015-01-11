@@ -2,6 +2,9 @@
 var malat=44.723595;
 var malon=-93.176812;
 //dieses JSON muss per HTTP GET request vom server angefordert und in localstorage zwischengespeichert werden!
+
+var contacts;
+/*
 var contacts={
 	"person":[
 		{
@@ -35,7 +38,14 @@ var contacts={
 		
 	]
 };
+*/
 
+$.getJSON("http://127.0.0.1:8000/api/contacts",function(result){
+	contacts = JSON.parse(result);
+	alert(contacts.person[0].vorname);
+});
+
+/*
 function addList(){
 	//testarray beinhaltet position und distanz der personen
 	var testarray=[];
@@ -69,3 +79,4 @@ function getDistanceInKm(lat1,lon1,lat2,lon2){
 function deg2rad(deg){
 	return deg * (Math.PI/180)
 };
+*/
