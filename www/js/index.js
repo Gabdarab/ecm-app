@@ -9,29 +9,29 @@ var dataPostLocation = {
 			"vorname":"Peter",
 			"nachname":"Klein",
 			"longitude":"44.811805",
-			"latitude":"-93.176352",
-			"time":""
+			"latitude":"-93.176352"//,
+		//	"time":""
 		},
 		{
 			"vorname":"Anne",
 			"nachname":"Weiss",
 			"longitude":"44.750453",
-			"latitude":"-93.204766",
-			"time":""
+			"latitude":"-93.204766"//,
+		//	"time":""
 		},
 		{
 			"vorname":"Thomas",
 			"nachname":"Gross",
 			"longitude":"44.788673",
-			"latitude":"-93.205671",
-			"time":""
+			"latitude":"-93.205671"//,
+		//	"time":""
 		},
 		{
 			"vorname":"Petra",
 			"nachname":"Schwarz",
 			"longitude":"44.736285",
-			"latitude":"-93.207487",
-			"time":""
+			"latitude":"-93.207487"//,
+		//	"time":""
 		}
 		
 	]
@@ -47,7 +47,7 @@ document.addEventListener("deviceready", onDeviceReady(), false);
 function onDeviceReady(){
 	localStorage.removeItem("user");
 	console.log(checkReg());
-	//getRequest(apiGetContacts, dataGetContacts, addList);
+	getRequest(apiGetContacts, dataGetContacts, addList);
 	postRequest(apiPostLocation, dataPostLocation);
 	afterPush(pushvariable);
     homescreen(checkReg());

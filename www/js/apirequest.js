@@ -23,13 +23,13 @@ function getRequest(apiUrl, passData, successF){
 			console.log("_err: " + _err);
 		}
 	});
-};
+}
 
 function postRequest(apiUrl, passData){
     $.ajax({
         type: "POST",
         url: apiUrl,
-        contentType: "application/json; charset=utf-8",
+        contentType: "text/plain", //"application/json; charset=utf-8",
         //xhrFields: {
 		//	withCredentials: false
 		//	},
@@ -48,4 +48,4 @@ function postRequest(apiUrl, passData){
 			console.log("error _err: " + _err);
         }
     });
-};
+}
