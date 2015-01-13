@@ -1,52 +1,8 @@
 //Standort Mathäser (richtigen Koordinaten müssen noch ermittelt werden!)
 var malat=44.723595;
 var malon=-93.176812;
-//dieses JSON muss per HTTP GET request vom server angefordert und in localstorage zwischengespeichert werden!
 
-var contacts;
-/*
-var contacts={
-	"person":[
-		{
-			"vorname":"Peter",
-			"nachname":"Klein",
-			"longitude":"44.811805",
-			"latitude":"-93.176352",
-			"time":""
-		},
-		{
-			"vorname":"Anne",
-			"nachname":"Weiss",
-			"longitude":"44.750453",
-			"latitude":"-93.204766",
-			"time":""
-		},
-		{
-			"vorname":"Thomas",
-			"nachname":"Gross",
-			"longitude":"44.788673",
-			"latitude":"-93.205671",
-			"time":""
-		},
-		{
-			"vorname":"Petra",
-			"nachname":"Schwarz",
-			"longitude":"44.736285",
-			"latitude":"-93.207487",
-			"time":""
-		}
-		
-	]
-};
-*/
-
-$.getJSON("http://127.0.0.1:8000/api/contacts",function(result){
-	contacts = JSON.parse(result);
-	alert(contacts.person[0].vorname);
-});
-
-/*
-function addList(){
+function addList(contacts){
 	//testarray beinhaltet position und distanz der personen
 	var testarray=[];
 	for(item in contacts.person){
@@ -79,4 +35,3 @@ function getDistanceInKm(lat1,lon1,lat2,lon2){
 function deg2rad(deg){
 	return deg * (Math.PI/180)
 };
-*/

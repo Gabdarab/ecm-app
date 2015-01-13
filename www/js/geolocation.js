@@ -1,7 +1,7 @@
 //OK! 27.12.2014. determining location
 //für app 'alert' ersetzen durch HTTP PUT request an server  
 function setlocation(){
-	navigator.geolocation.getCurrentPosition(geolocationSuccess, geolocationError,{enableHighAccuracy:false, timeout: 10000, maximumAge:0});
+	navigator.geolocation.getCurrentPosition(geolocationSuccess, geolocationError,{enableHighAccuracy:false, timeout: 90000, maximumAge:0});
 };
 
 function geolocationSuccess(position) {
@@ -13,7 +13,8 @@ function geolocationSuccess(position) {
 
 
 function geolocationError(error) {
-    //alert('code: '    + error.code    + '\n' +
-    //      'message: ' + error.message + '\n');
-    alert('Error getting location.');
+    var message="geolocationError"
+    console.log('code: '    + error.code    + '\n' +
+                'message: ' + error.message + '\n');
+    return message;
 };
