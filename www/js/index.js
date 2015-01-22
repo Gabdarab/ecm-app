@@ -1,104 +1,57 @@
-//push notification simulieren
-
-var pushvariable=1;
-
-var apiPostLocation = 'http://127.0.0.1:8000/postlocation';
-var dataPostLocation = {
-	"person":[
-		{
-			"vorname":"Peter",
-			"nachname":"Klein",
-			"longitude":"44.811805",
-			"latitude":"-93.176352"//,
-		//	"time":""
-		},
-		{
-			"vorname":"Anne",
-			"nachname":"Weiss",
-			"longitude":"44.750453",
-			"latitude":"-93.204766"//,
-		//	"time":""
-		},
-		{
-			"vorname":"Thomas",
-			"nachname":"Gross",
-			"longitude":"44.788673",
-			"latitude":"-93.205671"//,
-		//	"time":""
-		},
-		{
-			"vorname":"Petra",
-			"nachname":"Schwarz",
-			"longitude":"44.736285",
-			"latitude":"-93.207487"//,
-		//	"time":""
-		}
-		
-	]
-};
-var apiGetContacts = 'http://127.0.0.1:8000/getcontacts';
-var dataGetContacts = {
-		api : "no use atm..."
-	};
-
+//how to differentiate referees von referers???
+//refresh contact list from within app, do not let user control refresh
+//add "seen" function that tracks what information the user has seen
+//after time of push try to automatically register location every 15 Minutes even if app is in background
+//send push notifications to users every 30 minutes if any contacts are in the vicinity of Mathäser
 
 document.addEventListener("deviceready", onDeviceReady(), false);
 
 function onDeviceReady(){
 	localStorage.removeItem("user");
-	console.log(checkReg());
-	getRequest(apiGetContacts, dataGetContacts, addList);
-	postRequest(apiPostLocation, dataPostLocation);
+	homescreen();
+	//getRequest(apiGetContacts, dataGetContacts, addList);
+	//postRequest(apiPostLocation, dataPostLocation;
 	afterPush(pushvariable);
-    homescreen(checkReg());
 
+	/*
+	///////////////////////////////////////////////////// POST location every time app is opened
+	document.addEventListener("resume", onResume, false);
+	function onResume() {
+   		setTimeout( function() {
+          setlocation();
+          // nach push jedes mal wenn app geöffnet wird addList rufen 
+        }, 0);
+	}
+	*/
+
+	///////////////////////////////////////////////////////////register new user
 	//submit registration button
 	$( "#submitreg" ).bind( "click",function(){
-		if ($("#textinput-vorname").val().length===0 | $("#textinput-nachname").val().length===0 | $("#textinput-regcode").val().length===0){
-			alert("Bitte überprüfen Sie Ihre Eingabe!");
+		if ($("#textinput-vorname").val().length===0 | $("#textinput-nachname").val().length===0 | 
+			$("#textinput-regcode").val().length===0){
+				alert("Bitte überprüfen Sie Ihre Eingabe!");
 		}else{
-			if (confirm("Haben Sie ihren richtigen Namen angegeben? \nIst der"+ 
+			if (confirm("Haben Sie ihren richtigen Namen angegeben? Ist der "+ 
 			"angegebene Registrierungscode identisch mit dem in ihrer E-Mail?")===true){
-				var regUserReturn=regUser();
-				//registrierungsansicht nach reg. anpassen
-				if(regUserReturn==="success"){
-					var reguser=JSON.parse(localStorage.getItem("user"));
-					afterReg(reguser);
-				}else if(_regReturn==="notsuccess"){
-					alert("Registration fehlgeschlagen. Bitte wiederholen Sie die Registrierung zu einem späteren Zeitpunkt.");
-				}else{
-					alert("Unbekannter fehler bei der Registrierung.");
-				};
-			}else{
-				//Eingabe löschen???
+				var user={
+					"vorname":$("#textinput-vorname").val(),
+					"nachname":$("#textinput-nachname").val(),
+					"regcode":$("#textinput-regcode").val(),
+					//"deviceuuid":device.uuid,
+					//"devicemodel":device.model, 
+					//"deviceplatform":device.platform, 
+					//"deviceversion":device.version 
+					};
+				// post user details to server
+				postRequest(apiPostReg,user,afterReg);
 			};
 		}; 
 	});
 
-	//function that checks registration success + alert
-	//function needs  to additionally send HTTP PUT request to server with registration data
-	//server needs to send back confirmation that registration worked, only then may JSON be saved in localstorage
-	function regUser(){
-		regsuccess="success"
-		regnotsuccess="notsuccess"
-		//JSON speichern
-		var user={
-		"vorname":$("#textinput-vorname").val(),
-		"nachname":$("#textinput-nachname").val(),
-		"regcode":$("#textinput-regcode").val(),
-		//"deviceuuid":device.uuid,
-		//"devicemodel":device.model, 
-		//"deviceplatform":device.platform, 
-		//"deviceversion":device.version 
-		};
-		//localStorage.setItem("registered",JSON.stringify(true));
-		localStorage.setItem("user",JSON.stringify(user));
-		return regsuccess
-	};
-
-	//UI nach Registrierung anpasen, nur wenn Registrierung gelungen ist!
-	//function stays as is, not affected by web service
-	function afterReg(_regReturn){
+	//Anmeldungssicht anpassen nach erfolgreicher Anmeldung
+	function afterReg(_status, _regReturn){
+		if(_status === 200){
+			localStorage.setItem("user",JSON.stringify(_regReturn));
 			$.mobile.changePage( "#page-referral", { transition: "slide", changeHash: false });
 			$("#textinput-vorname").attr("placeholder",_regReturn.vorname);
 			$("#textinput-vorname").attr("disabled","disabled");
@@ -111,10 +64,29 @@ function onDeviceReady(){
 			$("#page-reg").find("p").text("Erklärung zur App: Sie haben sich mit den" + 
 				" unten angezeigten Daten bereits registriert. Eine zweite Registrierung" + 
 				"ist nicht möglich. Für weitere Informationen clicken Sie bitte auf 'INFO'.");
+			setlocation();
+		}else{
+			alert("Anmeldung fehlgeschlagen. Bitte überprüfen Sie Ihre Internetverbindung" + 
+				"und versuchen Sie die Anmeldung zu einem späteren Zeitpunkt nochmal.")
+		};
 	};
 
+
+	////////////////////////////////////////////////////// check if user is registered upon opening app
+	function homescreen(){
+		var registereduser=JSON.parse(localStorage.getItem("user"));
+		if(registereduser!=null){
+			regView(registereduser);
+		}else{
+			//pass uuid to server in order to query SQL database
+			getRequest(apiGetUser,dataGetUser, regView);
+		};
+	};
+
+	//function used to change registration view, if user has already been registered
 	function regView(_regReturn){
 			$.mobile.navigate("#page-referral");
+			localStorage.setItem("user",JSON.stringify(_regReturn));
 			$("#textinput-vorname").attr("placeholder",_regReturn.vorname);
 			$("#textinput-vorname").attr("disabled","disabled");
 			$("#textinput-nachname").attr("placeholder",_regReturn.nachname);
@@ -126,9 +98,10 @@ function onDeviceReady(){
 			$("#page-reg").find("p").text("Erklärung zur App: Sie haben sich mit den" + 
 				" unten angezeigten Daten bereits registriert. Eine zweite Registrierung" + 
 				"ist nicht möglich. Für weitere Informationen clicken Sie bitte auf 'INFO'.");
+			setlocation();
 	};
 
-
+	///////////////////////////////////////////////////// simulate push notification
 	function afterPush(_pushvariable){
 		if(_pushvariable===1){
 			$("#coupon-text").text("Beschreibung Angebot Mathäser.");
@@ -136,20 +109,4 @@ function onDeviceReady(){
 		};
 	};
 
-	function checkReg(){
-		var registereduser=JSON.parse(localStorage.getItem("user"));
-		return registereduser;
-	};
-
-	function homescreen(_registereduser){
-		if(_registereduser!=null){
-			regView(_registereduser);
-		}else{};
-	};
 };
-
-/*
-if(isregistered){
-			var registereduser=JSON.parse(localStorage.getItem("user").vorname);
-		};
-*/
