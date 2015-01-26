@@ -82,3 +82,100 @@ To disable web storage backup to iCloud, set the BackupWebStorage preference to 
 
 2015-01-14 00:11:24.058 ecmapp[7689:773992] Resetting plugins due to page load.
 2015-01-14 00:11:24.237 ecmapp[7689:773992] Finished load of: file:///Users/gabordarvasi/Library/Developer/CoreSimulator/Devices/7DBA6B2D-FF55-48E0-9833-9B4A6E714A93/data/Containers/Bundle/Application/2575C62C-72F3-4F47-9821-DC09B70E3137/ecmapp.app/www/index.html
+2015-01-24 21:53:23.360 ecmapp[7164:403003] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/gabordarvasi/Library/Developer/CoreSimulator/Devices/7DBA6B2D-FF55-48E0-9833-9B4A6E714A93/data/Containers/Data/Application/9E032239-5F6D-4D10-BEFD-045D10A389FE/Library/Cookies/Cookies.binarycookies
+2015-01-24 21:53:23.674 ecmapp[7164:403003] Apache Cordova native platform version 3.7.0 is starting.
+2015-01-24 21:53:23.674 ecmapp[7164:403003] Multi-tasking -> Device: YES, App: YES
+2015-01-24 21:53:23.689 ecmapp[7164:403003] Unlimited access to network resources
+2015-01-24 21:53:23.701 ecmapp[7164:403003] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+To disable web storage backup to iCloud, set the BackupWebStorage preference to "local" in the Cordova config.xml file
+
+2015-01-24 21:53:24.564 ecmapp[7164:403003] Resetting plugins due to page load.
+2015-01-24 21:53:25.022 ecmapp[7164:403003] Finished load of: file:///Users/gabordarvasi/Library/Developer/CoreSimulator/Devices/7DBA6B2D-FF55-48E0-9833-9B4A6E714A93/data/Containers/Bundle/Application/CE11D3F7-54D4-4FAB-AC91-8AA1FB99631F/ecmapp.app/www/index.html
+2015-01-24 21:54:00.517 ecmapp[7164:403003] POST_textstatus: success
+2015-01-24 21:54:00.517 ecmapp[7164:403003] POST_jqXHR: 201
+2015-01-24 21:54:00.524 ecmapp[7164:403003] locationManager::didFailWithError (null)
+2015-01-24 21:54:00.549 ecmapp[7164:403003] code: 2
+message: The operation couldn’t be completed. (kCLErrorDomain error 0.)
+2015-01-25 13:42:37.172 ecmapp[7868:457824] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/gabordarvasi/Library/Developer/CoreSimulator/Devices/7DBA6B2D-FF55-48E0-9833-9B4A6E714A93/data/Containers/Data/Application/F3FF02BC-4511-4814-A9C3-094662CACC49/Library/Cookies/Cookies.binarycookies
+2015-01-25 13:42:37.512 ecmapp[7868:457824] Apache Cordova native platform version 3.7.0 is starting.
+2015-01-25 13:42:37.512 ecmapp[7868:457824] Multi-tasking -> Device: YES, App: YES
+2015-01-25 13:42:37.531 ecmapp[7868:457824] Unlimited access to network resources
+2015-01-25 13:42:37.546 ecmapp[7868:457824] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+To disable web storage backup to iCloud, set the BackupWebStorage preference to "local" in the Cordova config.xml file
+
+2015-01-25 13:42:38.367 ecmapp[7868:457824] Resetting plugins due to page load.
+2015-01-25 13:42:39.217 ecmapp[7868:457824] Finished load of: file:///Users/gabordarvasi/Library/Developer/CoreSimulator/Devices/7DBA6B2D-FF55-48E0-9833-9B4A6E714A93/data/Containers/Bundle/Application/6E37664C-A938-466A-9B5C-636A341FD6F3/ecmapp.app/www/index.html#page-referral
+2015-01-25 13:42:41.734 ecmapp[7868:457824] code: 2
+message: The operation couldn’t be completed. (kCLErrorDomain error 0.)
+2015-01-25 13:43:24.620 ecmapp[7868:457824] locationManager::didFailWithError (null)
+2015-01-25 13:43:24.626 ecmapp[7868:457824] code: 2
+message: The operation couldn’t be completed. (kCLErrorDomain error 0.)
+2015-01-25 13:43:48.210 ecmapp[8011:459241] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/gabordarvasi/Library/Developer/CoreSimulator/Devices/7DBA6B2D-FF55-48E0-9833-9B4A6E714A93/data/Containers/Data/Application/DD6176F4-353F-40BD-9EF9-B7F0A68F8686/Library/Cookies/Cookies.binarycookies
+2015-01-25 13:43:48.289 ecmapp[8011:459241] Apache Cordova native platform version 3.7.0 is starting.
+2015-01-25 13:43:48.290 ecmapp[8011:459241] Multi-tasking -> Device: YES, App: YES
+2015-01-25 13:43:48.291 ecmapp[8011:459241] Unlimited access to network resources
+2015-01-25 13:43:48.293 ecmapp[8011:459241] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+To disable web storage backup to iCloud, set the BackupWebStorage preference to "local" in the Cordova config.xml file
+
+2015-01-25 13:43:48.540 ecmapp[8011:459241] Resetting plugins due to page load.
+2015-01-25 13:43:48.886 ecmapp[8011:459241] Finished load of: file:///Users/gabordarvasi/Library/Developer/CoreSimulator/Devices/7DBA6B2D-FF55-48E0-9833-9B4A6E714A93/data/Containers/Bundle/Application/D7C08EDF-AB78-449F-91F0-3C1CDCD2990F/ecmapp.app/www/index.html#page-referral
+2015-01-25 13:43:52.216 ecmapp[8011:459241] code: 2
+message: The operation couldn’t be completed. (kCLErrorDomain error 0.)
+2015-01-25 13:44:46.903 ecmapp[8145:460593] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/gabordarvasi/Library/Developer/CoreSimulator/Devices/7DBA6B2D-FF55-48E0-9833-9B4A6E714A93/data/Containers/Data/Application/941DDECA-1EC8-4D2D-B24A-55AFD1E7E3BB/Library/Cookies/Cookies.binarycookies
+2015-01-25 13:44:46.981 ecmapp[8145:460593] Apache Cordova native platform version 3.7.0 is starting.
+2015-01-25 13:44:46.981 ecmapp[8145:460593] Multi-tasking -> Device: YES, App: YES
+2015-01-25 13:44:46.982 ecmapp[8145:460593] Unlimited access to network resources
+2015-01-25 13:44:46.984 ecmapp[8145:460593] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+To disable web storage backup to iCloud, set the BackupWebStorage preference to "local" in the Cordova config.xml file
+
+2015-01-25 13:44:47.231 ecmapp[8145:460593] Resetting plugins due to page load.
+2015-01-25 13:44:47.419 ecmapp[8145:460593] Finished load of: file:///Users/gabordarvasi/Library/Developer/CoreSimulator/Devices/7DBA6B2D-FF55-48E0-9833-9B4A6E714A93/data/Containers/Bundle/Application/4C246B2F-310D-4597-8531-E2AD3D75BF44/ecmapp.app/www/index.html
+2015-01-25 13:44:58.997 ecmapp[8145:460593] POST_textstatus: success
+2015-01-25 13:44:58.997 ecmapp[8145:460593] POST_jqXHR: 201
+2015-01-25 13:44:58.997 ecmapp[8145:460593] locationManager::didFailWithError (null)
+2015-01-25 13:44:59.000 ecmapp[8145:460593] code: 2
+message: The operation couldn’t be completed. (kCLErrorDomain error 0.)
+2015-01-25 13:46:02.359 ecmapp[8284:462022] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/gabordarvasi/Library/Developer/CoreSimulator/Devices/7DBA6B2D-FF55-48E0-9833-9B4A6E714A93/data/Containers/Data/Application/FE898D4C-ACA9-4FB4-959F-370D0D3AAB7C/Library/Cookies/Cookies.binarycookies
+2015-01-25 13:46:02.446 ecmapp[8284:462022] Apache Cordova native platform version 3.7.0 is starting.
+2015-01-25 13:46:02.446 ecmapp[8284:462022] Multi-tasking -> Device: YES, App: YES
+2015-01-25 13:46:02.448 ecmapp[8284:462022] Unlimited access to network resources
+2015-01-25 13:46:02.450 ecmapp[8284:462022] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+To disable web storage backup to iCloud, set the BackupWebStorage preference to "local" in the Cordova config.xml file
+
+2015-01-25 13:46:02.739 ecmapp[8284:462022] Resetting plugins due to page load.
+2015-01-25 13:46:02.923 ecmapp[8284:462022] Finished load of: file:///Users/gabordarvasi/Library/Developer/CoreSimulator/Devices/7DBA6B2D-FF55-48E0-9833-9B4A6E714A93/data/Containers/Bundle/Application/C969BFD5-23C8-44C2-A28F-78B070B76922/ecmapp.app/www/index.html
+2015-01-25 13:46:15.133 ecmapp[8284:462022] POST_textstatus: success
+2015-01-25 13:46:15.133 ecmapp[8284:462022] POST_jqXHR: 201
+2015-01-25 13:46:15.954 ecmapp[8284:462022] POST_textstatus: success
+2015-01-25 13:46:15.954 ecmapp[8284:462022] POST_jqXHR: 200
+2015-01-25 13:46:57.618 ecmapp[8284:462022] POST_textstatus: success
+2015-01-25 13:46:57.618 ecmapp[8284:462022] POST_jqXHR: 200
+2015-01-25 13:47:29.170 ecmapp[8284:462022] POST_textstatus: success
+2015-01-25 13:47:29.170 ecmapp[8284:462022] POST_jqXHR: 200
+2015-01-25 13:50:22.779 ecmapp[8284:462022] POST_textstatus: success
+2015-01-25 13:50:22.779 ecmapp[8284:462022] POST_jqXHR: 200

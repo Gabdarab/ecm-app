@@ -13,7 +13,11 @@
         <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
         <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
         <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+        <script type="text/javascript" src="js/appvariables.js"></script>
         <script type="text/javascript" src="lib/underscorejs-min.js"></script>
+        <script type="text/javascript" src="js/contactlist.js"></script>
+        <script type="text/javascript" src="js/geolocation.js"></script>
+        <script type="text/javascript" src="js/apirequest.js"></script>
         <title>Mathäser App</title>
     </head>
 
@@ -38,14 +42,14 @@
                     <label for="textinput-regcode">Registrierungscode:</label>
                     <input type="text" name="textinput-regcode" id="textinput-regcode" placeholder="Registrierungscode" value=""> 
                 </div> 
-                <input type="submit" value="submit" id="submitreg"> 
+                <button type="button" id="submitreg">Anmelden</button> 
             </div>
             <div data-role="footer" data-id="persist" data-position="fixed" style="overflow:hidden;" data-theme="a">
                 <div data-role="navbar">
                     <ul>
-                        <li><a href="#" class="ui-btn-active ui-state-persist">Registrieren</a></li>
-                        <li><a href="#page-referral" class="ui-disabled" data-transition="slide">App Empfehlen</a></li>
-                        <li><a href="#page-coupon" class="ui-disabled" data-transition="slide">Angebote Ansehen</a></li>
+                        <li><a href="#" class="ui-btn-active ui-state-persist">Anmelden</a></li>
+                        <li><a href="#page-referral" class="ui-disabled" data-transition="slide">Weiterempfehlen</a></li>
+                        <li><a href="#page-coupon" class="ui-disabled" data-transition="slide">Angebote</a></li>
                     </ul>
                 </div>
                 <h3>ECM LMU</h3>
@@ -64,45 +68,35 @@
             <div data-role="footer" data-id="persist" data-position="fixed" style="overflow:hidden;" data-theme="a">
                 <div data-role="navbar">
                     <ul>
-                        <li><a href="#page-reg" data-transition="slide" data-direction="reverse">Registrieren</a></li>
-                        <li><a href="#" class="ui-btn-active ui-state-persist">App Empfehlen</a></li>
-                        <li><a href="#page-coupon" data-transition="slide">Angebote Ansehen</a></li>
+                        <li><a href="#page-reg" data-transition="slide" data-direction="reverse">Anmelden</a></li>
+                        <li><a href="#" class="ui-btn-active ui-state-persist">Weiterempfehlen</a></li>
+                        <li><a href="#page-coupon" data-transition="slide">Angebote</a></li>
                     </ul>
                 </div>
                 <h3>ECM LMU</h3>
             </div>
         </div>
 
--->
         <div data-role="page" data-title="Angebote Ansehen" id="page-coupon">
             <div data-role="header" data-id="persist" data-position="fixed" data-theme="a">
                 <h1>Mathäser App</h1>
                 <a href="#page-info" data-icon="gear" class="ui-btn-right" data-transition="flip">Info</a>
             </div>
             <div data-role="main" class="ui-content">
-                <p>Coupons page.</p>
+                <p id="coupon-text">In kürze erhalten Sie aufregende Angebote von Mathäser!</p>
             </div>
-
-
-
-
-            <div data-role="content">
+            <div id="contact-overview" data-role="content" style="display:none;">
                 <ul id="contactlist" data-role="listview" data-divider-theme="a" data-inset="true">
-                    <li id="startlist" data-role="list-divider" role="heading" style="text-align:center"><h1>Standort Ihrer Kontakte</h1></li>
+                    <li id="startlist" data-role="list-divider" role="heading" style="text-align:center"><h1>Entfernung Ihrer Kontakte vom Mathäser</h1></li>
                 </ul>
+                <button type="button" id="refreshlist">Aktualisieren</button>
             </div>
-
-
-
-
-
-
             <div data-role="footer" data-id="persist" data-position="fixed" style="overflow:hidden;" data-theme="a">
                 <div data-role="navbar">
                     <ul>
-                        <li><a href="#page-reg" class="ui-disabled" data-transition="slide" data-direction="reverse">Registrieren</a></li>
-                        <li><a href="#page-referral" class="ui-disabled" data-transition="slide" data-direction="reverse">App Empfehlen</a></li>
-                        <li><a href="#" class="ui-btn-active ui-state-persist">Angebote Ansehen</a></li>
+                        <li><a href="#page-reg" data-transition="slide" data-direction="reverse">Anmelden</a></li>
+                        <li><a href="#page-referral" data-transition="slide" data-direction="reverse">Weiterempfehlen</a></li>
+                        <li><a href="#" class="ui-btn-active ui-state-persist">Angebote</a></li>
                     </ul>
                 </div>
                 <h3>ECM LMU</h3>
@@ -127,7 +121,6 @@
 
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
-        <script type="text/javascript" src="js/coupon.js"></script>
 
     </body>
 
