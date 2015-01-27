@@ -8,14 +8,15 @@ document.addEventListener("deviceready", onDeviceReady(), false);
 
 function onDeviceReady(){
 	localStorage.removeItem("user");
-	homescreen();
-	afterPush(pushvariable);
-
+	//homescreen();
+	//afterPush(pushvariable);
+	setlocation();
 	
 	///////////////////////////////////////////////////// POST location every time app is opened
 	document.addEventListener("resume", onResume, false);
 	function onResume() {
    		setTimeout( function() {
+   			//??? posts same location as last time???
           setlocation();
           // nach push jedes mal wenn app geöffnet wird addList rufen 
         }, 0);

@@ -8,13 +8,17 @@ function geolocationSuccess(position) {
  	//add uuid, e-mail, name to location JSON for identification
  	var currentLocation = {
  		//'uuid' : user.uuid,
- 		'regcode' : user.regcode,
  		'latitude' : position.coords.latitude,
         'longitude' : position.coords.longitude,
         'accuracy' : position.coords.accuracy,
         'timestamp' : position.timestamp 
     };
     postRequest(apiPostLocation, currentLocation, geolocationCallback); 
+
+    alert('latitude :' + position.coords.latitude + "\n" +
+        'longitude :' + position.coords.longitude + "\n" +
+        'accuracy :' + position.coords.accuracy + "\n" +
+        'timestamp :' + position.timestamp )
 };
 
 

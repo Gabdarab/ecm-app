@@ -8,10 +8,11 @@ document.addEventListener("deviceready", onDeviceReady(), false);
 
 function onDeviceReady(){
 	localStorage.removeItem("user");
-	homescreen();
+	//homescreen();
 	afterPush(pushvariable);
-
 	
+
+	/*
 	///////////////////////////////////////////////////// POST location every time app is opened
 	document.addEventListener("resume", onResume, false);
 	function onResume() {
@@ -21,6 +22,7 @@ function onDeviceReady(){
           // nach push jedes mal wenn app geöffnet wird addList rufen 
         }, 0);
 	}
+	*/
 	
 
 	///////////////////////////////////////////////////////////register new user
@@ -33,13 +35,14 @@ function onDeviceReady(){
 			if (confirm("Haben Sie ihren richtigen Namen angegeben? Ist der "+ 
 			"angegebene Registrierungscode identisch mit dem in ihrer E-Mail?")===true){
 				var user={
+					//"deviceuuid":device.uuid,
 					"vorname":$("#textinput-vorname").val(),
 					"nachname":$("#textinput-nachname").val(),
 					"regcode":$("#textinput-regcode").val(),
-					//"deviceuuid":device.uuid,
 					//"devicemodel":device.model, 
 					//"deviceplatform":device.platform, 
-					//"deviceversion":device.version 
+					//"deviceversion":device.version,
+					"timestamp" : clock.getTime() 
 					};
 				// post user details to server
 				postRequest(apiPostReg,user,afterReg);
