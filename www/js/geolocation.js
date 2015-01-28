@@ -13,13 +13,7 @@ function geolocationSuccess(position) {
         'accuracy' : position.coords.accuracy,
         'timestamp' : position.timestamp 
     };
-    postRequest(apiPostLocation, currentLocation, geolocationCallback); 
-     //only for testing
-    alert(//'latitude :' + position.coords.latitude + "\n" +
-        //'longitude :' + position.coords.longitude + "\n" +
-        //'accuracy :' + position.coords.accuracy + "\n" +
-        'timestamp :' + position.timestamp )
-    
+    postRequest(apiPostLocation, currentLocation, geolocationCallback);     
 };
 
 
@@ -35,6 +29,7 @@ function geolocationCallback(jqXHR, data){
 	if(jqXHR===200){
 
 	}else{
-		console.log("geolocationCallback when location post unsuccessful. \n geolocation.js:33");
+		console.log("jqXHR: "+ jqXHR);
+        console.log("data: "+ data);
 	};
 };

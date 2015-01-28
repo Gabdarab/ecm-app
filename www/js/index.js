@@ -1,14 +1,9 @@
-//how to differentiate referees von referers???
-//refresh contact list from within app, do not let user control refresh
-//add "seen" function that tracks what information the user has seen
-//after time of push try to automatically register location every 15 Minutes even if app is in background
-//send push notifications to users every 30 minutes if any contacts are in the vicinity of Mathäser
 
 document.addEventListener("deviceready", onDeviceReady(), false);
 
 function onDeviceReady(){
 	localStorage.removeItem("user");
-	//homescreen();
+	homescreen();
 	afterPush(pushvariable);
 	
 
@@ -34,6 +29,7 @@ function onDeviceReady(){
 		}else{
 			if (confirm("Haben Sie ihren richtigen Namen angegeben? Ist der "+ 
 			"angegebene Registrierungscode identisch mit dem in ihrer E-Mail?")===true){
+				var clock = new Date();
 				var user={
 					//"deviceuuid":device.uuid,
 					"vorname":$("#textinput-vorname").val(),
@@ -87,20 +83,28 @@ function onDeviceReady(){
 
 	//function used to change registration view, if user has already been registered
 	function regView(_regReturn){
-				$.mobile.navigate("#page-referral");
-				localStorage.setItem("user",JSON.stringify(_regReturn));
-				$("#textinput-vorname").attr("placeholder",_regReturn.vorname);
-				$("#textinput-vorname").attr("disabled","disabled");
-				$("#textinput-nachname").attr("placeholder",_regReturn.nachname);
-				$("#textinput-nachname").attr("disabled","disabled");
-				$("#textinput-regcode").attr("placeholder",_regReturn.regcode);
-				$("#textinput-regcode").attr("disabled","disabled");
-				$(".ui-disabled").removeClass("ui-disabled");
-				$("#submitreg").attr("disabled","disabled");
-				$("#page-reg").find("p").text("Erklärung zur App: Sie haben sich mit den" + 
-					" unten angezeigten Daten bereits registriert. Eine zweite Registrierung" + 
-					"ist nicht möglich. Für weitere Informationen clicken Sie bitte auf 'INFO'.");
-				setlocation();
+		if (_regReturn=[]){
+
+			console.log("uuid not found.")
+			
+		}else{
+			
+			$.mobile.navigate("#page-referral");
+			localStorage.setItem("user",JSON.stringify(_regReturn[0]));
+			$("#textinput-vorname").attr("placeholder",_regReturn[0].vorname);
+			$("#textinput-vorname").attr("disabled","disabled");
+			$("#textinput-nachname").attr("placeholder",_regReturn[0].nachname);
+			$("#textinput-nachname").attr("disabled","disabled");
+			$("#textinput-regcode").attr("placeholder",_regReturn[0].regcode);
+			$("#textinput-regcode").attr("disabled","disabled");
+			$(".ui-disabled").removeClass("ui-disabled");
+			$("#submitreg").attr("disabled","disabled");
+			$("#page-reg").find("p").text("Erklärung zur App: Sie haben sich mit den" + 
+				" unten angezeigten Daten bereits registriert. Eine zweite Registrierung" + 
+				"ist nicht möglich. Für weitere Informationen clicken Sie bitte auf 'INFO'.");
+			setlocation();
+
+		}
 	};
 
 	///////////////////////////////////////////////////// simulate push notification

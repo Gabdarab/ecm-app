@@ -39,7 +39,7 @@ function postRequest(apiUrl, passData, callbackF){
         //dataType: "json",
         success: function(_data, _textstatus, _jqXHR){
         	callbackF(_jqXHR.status,passData);
-        	//console.log("POST_data: " + _data.message);
+        	console.log("POST_data: " + _data.message);
 			console.log("POST_textstatus: " + _textstatus);
 			console.log("POST_jqXHR: " + _jqXHR.status);
         },
