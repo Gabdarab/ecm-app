@@ -19,14 +19,14 @@ function geolocationSuccess(position) {
 
 function geolocationError(error) {
 	//on error call setlocation function again later, e.g. 10 minutes later 3 times and then give up
-    var message="geolocationError"
-    console.log('code: '    + error.code    + '\n' +
-                'message: ' + error.message + '\n');
-    return message;
+    //var message="geolocationError"
+    console.log('geolocationError code: '    + error.code    + '\n' +
+                'geolocationError message: ' + error.message + '\n');
+    //return message;
 };
 
 function geolocationCallback(jqXHR, data){
-	if(jqXHR===200){
+	if(jqXHR===201){
 
 	}else{
 		console.log("jqXHR: "+ jqXHR);

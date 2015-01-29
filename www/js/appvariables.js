@@ -20,5 +20,5 @@ var dataGetContacts = {
 
 var apiGetUser = 'http://127.0.0.1:8000/getregistered';
 var dataGetUser = {
-		uuid : "TEST" //JSON.parse(localStorage.getItem("user")).uuid
+		uuid : "uuidTEST" //JSON.parse(localStorage.getItem("user")).uuid
 	};

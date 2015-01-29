@@ -4,25 +4,21 @@ document.addEventListener("deviceready", onDeviceReady(), false);
 function onDeviceReady(){
 	localStorage.removeItem("user");
 	homescreen();
-	afterPush(pushvariable);
 	
-
 	/*
-	///////////////////////////////////////////////////// POST location every time app is opened
 	document.addEventListener("resume", onResume, false);
 	function onResume() {
    		setTimeout( function() {
    			//??? posts same location as last time???
           setlocation();
-          // nach push jedes mal wenn app geöffnet wird addList rufen 
+          afterPush(); 
         }, 0);
 	}
 	*/
-	
 
 	///////////////////////////////////////////////////////////register new user
 	//submit registration button
-	$( "#submitreg" ).bind( "click",function(){
+	$( "#btn-submitreg" ).bind( "click",function(){
 		if ($("#textinput-vorname").val().length===0 | $("#textinput-nachname").val().length===0 | 
 			$("#textinput-regcode").val().length===0){
 				alert("Bitte überprüfen Sie Ihre Eingabe!");
@@ -46,9 +42,17 @@ function onDeviceReady(){
 		}; 
 	});
 
+	$( "#btn-login" ).bind( "click",function(){
+		homescreen();
+	});
+};
+
 	//Anmeldungssicht anpassen nach erfolgreicher Anmeldung
 	function afterReg(_status, _regReturn){
 		if(_status === 201){
+
+			afterPush(pushvariable);
+
 			localStorage.setItem("user",JSON.stringify(_regReturn));
 			$.mobile.changePage( "#page-referral", { transition: "slide", changeHash: false });
 			$("#textinput-vorname").attr("placeholder",_regReturn.vorname);
@@ -57,15 +61,17 @@ function onDeviceReady(){
 			$("#textinput-nachname").attr("disabled","disabled");
 			$("#textinput-regcode").attr("placeholder",_regReturn.regcode);
 			$("#textinput-regcode").attr("disabled","disabled");
-			$("#submitreg").attr("disabled","disabled");
+			$("#reglink").attr("style","display:none;");
+			$("#btn-submitreg").attr("disabled","disabled");
+			$("#btn-login").attr("disabled","disabled");
 			$(".ui-disabled").removeClass("ui-disabled");
 			$("#page-reg").find("p").text("Erklärung zur App: Sie haben sich mit den" + 
 				" unten angezeigten Daten bereits registriert. Eine zweite Registrierung" + 
 				"ist nicht möglich. Für weitere Informationen clicken Sie bitte auf 'INFO'.");
 			setlocation();
 		}else{
-			alert("Anmeldung fehlgeschlagen. Bitte überprüfen Sie Ihre Internetverbindung" + 
-				"und versuchen Sie die Anmeldung zu einem späteren Zeitpunkt nochmal.")
+			alert("Anmeldung fehlgeschlagen. Bitte überprüfen Sie Ihre Internetverbindung " + 
+				"und versuchen Sie die Anmeldung nochmal.")
 		};
 	};
 
@@ -82,38 +88,43 @@ function onDeviceReady(){
 	};
 
 	//function used to change registration view, if user has already been registered
-	function regView(_regReturn){
-		if (_regReturn=[]){
+	function regView(_status, _regReturn){ 
+		
+		if (_status === 200){
+			if (_regReturn.length===0){
+				//user not registered or reinstalled app or updated ios
+				console.log("uuid not found.");
+				
+			}else{
 
-			console.log("uuid not found.")
-			
+				afterPush(pushvariable);
+				
+				$.mobile.navigate("#page-referral");
+				localStorage.setItem("user",JSON.stringify(_regReturn[0]));
+				$("#textinput-vorname").attr("placeholder",_regReturn[0].vorname);
+				$("#textinput-vorname").attr("disabled","disabled");
+				$("#textinput-nachname").attr("placeholder",_regReturn[0].nachname);
+				$("#textinput-nachname").attr("disabled","disabled");
+				$("#textinput-regcode").attr("placeholder",_regReturn[0].regcode);
+				$("#textinput-regcode").attr("disabled","disabled");
+				$(".ui-disabled").removeClass("ui-disabled");
+				$("#reglink").attr("style","display:none;");
+				$("#btn-submitreg").attr("disabled","disabled");
+				$("#btn-login").attr("disabled","disabled");
+				$("#page-reg").find("p").text("Erklärung zur App: Sie haben sich mit den" + 
+					" unten angezeigten Daten bereits registriert. Eine zweite Registrierung" + 
+					"ist nicht möglich. Für weitere Informationen clicken Sie bitte auf 'INFO'.");
+				setlocation();
+
+			};
 		}else{
-			
-			$.mobile.navigate("#page-referral");
-			localStorage.setItem("user",JSON.stringify(_regReturn[0]));
-			$("#textinput-vorname").attr("placeholder",_regReturn[0].vorname);
-			$("#textinput-vorname").attr("disabled","disabled");
-			$("#textinput-nachname").attr("placeholder",_regReturn[0].nachname);
-			$("#textinput-nachname").attr("disabled","disabled");
-			$("#textinput-regcode").attr("placeholder",_regReturn[0].regcode);
-			$("#textinput-regcode").attr("disabled","disabled");
-			$(".ui-disabled").removeClass("ui-disabled");
-			$("#submitreg").attr("disabled","disabled");
-			$("#page-reg").find("p").text("Erklärung zur App: Sie haben sich mit den" + 
-				" unten angezeigten Daten bereits registriert. Eine zweite Registrierung" + 
-				"ist nicht möglich. Für weitere Informationen clicken Sie bitte auf 'INFO'.");
-			setlocation();
-
-		}
+			//decide how to handle 500 and 503 errors
+		};
 	};
 
 	///////////////////////////////////////////////////// simulate push notification
 	function afterPush(_pushvariable){
 		if(_pushvariable===1){
 			getRequest(apiGetContacts, dataGetContacts, addList);
-			$("#coupon-text").text("Beschreibung Angebot Mathäser.");
-			$("#contact-overview").attr("style","");
 		};
 	};
-
-};

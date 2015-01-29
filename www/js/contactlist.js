@@ -1,6 +1,11 @@
 
-function addList(contacts){
+function addList(_jqXHL, contacts){
 	//testarray beinhaltet position und distanz der personen
+	if (_jqXHL === 200){
+
+		$("#coupon-text").text("Beschreibung Angebot Mathäser.");
+		$("#contact-overview").attr("style","");
+
 		var testarray=[];
 		for(item in contacts){
 			testarray[item] = {position:item,distance:getDistanceInKm(malat,malon,contacts[item].latitude,contacts[item].longitude)};
@@ -14,6 +19,9 @@ function addList(contacts){
 			var HTMLformattedlistitem=HTMLlistitem.replace("%id%","entry"+sortedarray[item].position).replace("%name%",wholename).replace("%distance%",Math.round(sortedarray[item].distance*10)/10);
 			$("#contactlist").append(HTMLformattedlistitem);
 		};
+	}else{
+		//handling 500 and 503 error
+	};
 };
 
 function getDistanceInKm(lat1,lon1,lat2,lon2){

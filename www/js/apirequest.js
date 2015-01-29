@@ -13,14 +13,15 @@ function getRequest(apiUrl, passData, callbackF){
 		success: function(_data, _textstatus, _jqXHR) {
 			console.log("GET_textstatus: " + _textstatus);
 			console.log("GET_success_jqXHR: " + _jqXHR.status);
-			callbackF(_data);
+			callbackF(_jqXHR.status, _data);
 		},
 
 		error: function(_jqXHR, _textstatus, _err) {
 			console.log("GET_error_jqXHR: " + _jqXHR.status);
 			console.log("GET_textstatus: " + _textstatus);
 			console.log("GET_error_err: " + _err);
-			// on error 3 mal wiederholen mit counter
+			callbackF(_jqXHR.status, _data);
+			//handle connection errors here
 		}
 	});
 }
@@ -48,7 +49,7 @@ function postRequest(apiUrl, passData, callbackF){
         	console.log("POST_jqXHR: " + _jqXHR.status);
 			console.log("POST_textstatus: " + _textstatus);
 			console.log("POST_error_err: " + _err);
-			// on error 3 mal wiederholen mit counter
+			//handle connection errors here
         }
     });
 }
