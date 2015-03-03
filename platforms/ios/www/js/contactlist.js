@@ -1,19 +1,27 @@
 
-function addList(contacts){
+function addList(_jqXHL, contacts){
 	//testarray beinhaltet position und distanz der personen
+	if (_jqXHL === 200){
+
+		$("#coupon-text").text("Beschreibung Angebot Mathäser.");
+		$("#contact-overview").attr("style","");
+
 		var testarray=[];
-		for(item in contacts.person){
-			testarray[item] = {position:item,distance:getDistanceInKm(malat,malon,contacts.person[item].longitude,contacts.person[item].latitude)};
+		for(item in contacts){
+			testarray[item] = {position:item,distance:getDistanceInKm(malat,malon,contacts[item].latitude,contacts[item].longitude)};
 		};
 		//sortedarray ist nach der distanz der personen sortoiert udn enhält die ursprüngliche position der personen im übermitteltem JSON
 		var sortedarray=_.sortBy(testarray,'distance');
 		//die position der personen im JSON wird aus sortedarray ausgelesen. die personen werden mit aufsteigender distanz in die liste eingetragen
 		for(item in sortedarray){
-			var wholename=contacts.person[sortedarray[item].position].vorname+" "+contacts.person[sortedarray[item].position].nachname;
+			var wholename=contacts[sortedarray[item].position].vorname+" "+contacts[sortedarray[item].position].nachname;
 			var HTMLlistitem='<li id="%id%"><h1 class="ui-gmap-marker-title wrap" style="text-align:left">%name%</h1><div class="ui-li-count"><span>%distance% km</span></div></li>';
 			var HTMLformattedlistitem=HTMLlistitem.replace("%id%","entry"+sortedarray[item].position).replace("%name%",wholename).replace("%distance%",Math.round(sortedarray[item].distance*10)/10);
 			$("#contactlist").append(HTMLformattedlistitem);
 		};
+	}else{
+		//handling 500 and 503 error
+	};
 };
 
 function getDistanceInKm(lat1,lon1,lat2,lon2){

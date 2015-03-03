@@ -45,7 +45,33 @@ function onDeviceReady(){
 	$( "#btn-login" ).bind( "click",function(){
 		homescreen();
 	});
-};
+
+	$("#btn-angebote-0").bind("click", function(){
+		contactsBeingViewed = true;
+
+		if (contactsAreDislpayed){
+			seenContacts();
+		}
+
+	});
+
+	$("#btn-angebote-1").bind("click", function(){
+		contactsBeingViewed = true;
+
+		if (contactsAreDislpayed){
+			seenContacts();
+		}
+		
+	});
+
+	$("#btn-regpage").bind("click", function(){
+		contactsBeingViewed = false;
+	});
+
+	$("#btn-refpage").bind("click", function(){
+		contactsBeingViewed = false;
+	});
+
 
 	//Anmeldungssicht anpassen nach erfolgreicher Anmeldung
 	function afterReg(_status, _regReturn){
@@ -65,7 +91,7 @@ function onDeviceReady(){
 			$("#btn-submitreg").attr("disabled","disabled");
 			$("#btn-login").attr("disabled","disabled");
 			$(".ui-disabled").removeClass("ui-disabled");
-			$("#page-reg").find("p").text("Erklärung zur App: Sie haben sich mit den" + 
+			$("#app-text").text("Erklärung zur App: Sie haben sich mit den" + 
 				" unten angezeigten Daten bereits registriert. Eine zweite Registrierung" + 
 				"ist nicht möglich. Für weitere Informationen clicken Sie bitte auf 'INFO'.");
 			setlocation();
@@ -111,7 +137,7 @@ function onDeviceReady(){
 				$("#reglink").attr("style","display:none;");
 				$("#btn-submitreg").attr("disabled","disabled");
 				$("#btn-login").attr("disabled","disabled");
-				$("#page-reg").find("p").text("Erklärung zur App: Sie haben sich mit den" + 
+				$("#app-text").text("Erklärung zur App: Sie haben sich mit den" + 
 					" unten angezeigten Daten bereits registriert. Eine zweite Registrierung" + 
 					"ist nicht möglich. Für weitere Informationen clicken Sie bitte auf 'INFO'.");
 				setlocation();
@@ -128,3 +154,8 @@ function onDeviceReady(){
 			getRequest(apiGetContacts, dataGetContacts, addList);
 		};
 	};
+
+};
+
+
+

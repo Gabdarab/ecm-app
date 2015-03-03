@@ -25,11 +25,12 @@
     <body>
     	<div data-role="page" data-title="Registrierung" id="page-reg">
             <div data-role="header" data-id="persist" data-position="fixed" data-theme="a" align="center">
-                <h1>Mathäser App</h1>
+                <h1>Mathäser Promotions</h1>
                 <a href="#page-info" data-icon="gear" class="ui-btn-right" data-transition="flip">Info</a>
             </div>
             <div data-role="main" class="ui-content">
-                <p>Erklärung für die Registrierung der App.</p>
+                <p>Regestrieren Sie sich schnell und einfach auf der Mathäser Promotions App, um spontane Angebote und exklusive Rabattaktionen von Mathäser zu erhalten! <br> Mehr Details erfahren Sie unter 'Info'.</p> 
+
                 <div class="ui-field-contain">
                     <label for="textinput-vorname">Vorname:</label>
                     <input type="text" name="textinput-vorname" id="textinput-vorname" placeholder="Vorname" value="">
@@ -42,7 +43,8 @@
                     <label for="textinput-regcode">Registrierungscode:</label>
                     <input type="text" name="textinput-regcode" id="textinput-regcode" placeholder="Registrierungscode" value=""> 
                 </div> 
-                <button type="button" id="submitreg">Anmelden</button> 
+                <button type="button" id="btn-submitreg">Registrieren</button> 
+                <p> <a href="#page-registered" id ="reglink" style="" data-transition="flip">Sind Sie bereits registriert?</a> </p>
             </div>
             <div data-role="footer" data-id="persist" data-position="fixed" style="overflow:hidden;" data-theme="a">
                 <div data-role="navbar">
@@ -87,7 +89,7 @@
             </div>
             <div id="contact-overview" data-role="content" style="display:none;">
                 <ul id="contactlist" data-role="listview" data-divider-theme="a" data-inset="true">
-                    <li id="startlist" data-role="list-divider" role="heading" style="text-align:center"><h1>Entfernung Ihrer Kontakte vom Mathäser</h1></li>
+                    <li id="startlist" data-role="list-divider" role="heading" style="text-align:center"><h1>Entfernung vom Mathäser</h1></li>
                 </ul>
                 <button type="button" id="refreshlist">Aktualisieren</button>
             </div>
@@ -108,10 +110,26 @@
             <div data-role="header" data-id="persist" data-position="fixed" data-theme="a" align="center">
                 <a href="#" data-rel="back" data-icon="arrow-l" class="ui-btn-left" data-transition="flip">Zurück</a>
                 <h1>Mathäser App</h1>
-                <a href="#page-info" data-icon="gear" class="ui-btn-right" data-transition="flip">Info</a>
+                <!--<a href="#page-info" data-icon="gear" class="ui-btn-right" data-transition="flip">Info</a>-->
             </div>
             <div data-role="main" class="ui-content">
                 <p>Info page.</p>
+            </div>
+            <div data-role="footer" data-id="persist" data-position="fixed" style="overflow:hidden;" data-theme="a">
+                <h3>ECM LMU</h3>
+            </div>
+        </div>
+
+        <div data-role="page" data-title="Registered" id="page-registered">
+            <div data-role="header" data-id="persist" data-position="fixed" data-theme="a" align="center">
+                <a href="#" data-rel="back" data-icon="arrow-l" class="ui-btn-left" data-transition="flip">Zurück</a>
+                <h1>Mathäser App</h1>
+                <a href="#page-info" data-icon="gear" class="ui-btn-right" data-transition="flip">Info</a>
+            </div>
+            <div data-role="main" class="ui-content">
+                <p> Falls Sie sich bereits registriert haben und die Anmeldung fehlgeschlagen ist, prüfen Sie bitte ihre Internetverbindung und versuchen Sie es erneut. </p>
+                <button type="button" id="btn-login">Anmelden</button>
+                <p> Wenn Sie die App gelöscht und neu installiert, oder Ihr Betriebssystem aktualisiert haben, bitte registrieren Sie sich erneut mit dem gleichen Namen und dem Registrierungscode, die Sie per Email erhalten haben. </p>
             </div>
             <div data-role="footer" data-id="persist" data-position="fixed" style="overflow:hidden;" data-theme="a">
                 <h3>ECM LMU</h3>

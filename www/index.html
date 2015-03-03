@@ -25,12 +25,11 @@
     <body>
     	<div data-role="page" data-title="Registrierung" id="page-reg">
             <div data-role="header" data-id="persist" data-position="fixed" data-theme="a" align="center">
-                <h1>Mathäser App</h1>
+                <h1>Mathäser Promotions</h1>
                 <a href="#page-info" data-icon="gear" class="ui-btn-right" data-transition="flip">Info</a>
             </div>
             <div data-role="main" class="ui-content">
-                <p>Erklärung für die Registrierung der App. </p> 
-                <p> <a href="#page-registered" id ="reglink" style="" data-transition="flip">Haben Sie sich bereits registriert?</a> </p>
+                <p id ="app-text">Regestrieren Sie sich schnell und einfach auf der Mathäser Promotions App, um spontane Angebote und exklusive Rabattaktionen von Mathäser zu erhalten! <br> Mehr Details erfahren Sie unter 'Info'.</p> 
 
                 <div class="ui-field-contain">
                     <label for="textinput-vorname">Vorname:</label>
@@ -45,13 +44,14 @@
                     <input type="text" name="textinput-regcode" id="textinput-regcode" placeholder="Registrierungscode" value=""> 
                 </div> 
                 <button type="button" id="btn-submitreg">Registrieren</button> 
+                <p> <a href="#page-registered" id ="reglink" style="" data-transition="flip">Sind Sie bereits registriert?</a> </p>
             </div>
             <div data-role="footer" data-id="persist" data-position="fixed" style="overflow:hidden;" data-theme="a">
                 <div data-role="navbar">
                     <ul>
                         <li><a href="#" class="ui-btn-active ui-state-persist">Anmelden</a></li>
                         <li><a href="#page-referral" class="ui-disabled" data-transition="slide">Weiterempfehlen</a></li>
-                        <li><a href="#page-coupon" class="ui-disabled" data-transition="slide">Angebote</a></li>
+                        <li><a href="#page-coupon" id="btn-angebote-0" class="ui-disabled" data-transition="slide">Angebote</a></li>
                     </ul>
                 </div>
                 <h3>ECM LMU</h3>
@@ -72,7 +72,7 @@
                     <ul>
                         <li><a href="#page-reg" data-transition="slide" data-direction="reverse">Anmelden</a></li>
                         <li><a href="#" class="ui-btn-active ui-state-persist">Weiterempfehlen</a></li>
-                        <li><a href="#page-coupon" data-transition="slide">Angebote</a></li>
+                        <li><a href="#page-coupon" id="btn-angebote-1" data-transition="slide">Angebote</a></li>
                     </ul>
                 </div>
                 <h3>ECM LMU</h3>
@@ -96,8 +96,8 @@
             <div data-role="footer" data-id="persist" data-position="fixed" style="overflow:hidden;" data-theme="a">
                 <div data-role="navbar">
                     <ul>
-                        <li><a href="#page-reg" data-transition="slide" data-direction="reverse">Anmelden</a></li>
-                        <li><a href="#page-referral" data-transition="slide" data-direction="reverse">Weiterempfehlen</a></li>
+                        <li><a href="#page-reg" id = "btn-regpage" data-transition="slide" data-direction="reverse">Anmelden</a></li>
+                        <li><a href="#page-referral" id = "btn-refpage" data-transition="slide" data-direction="reverse">Weiterempfehlen</a></li>
                         <li><a href="#" class="ui-btn-active ui-state-persist">Angebote</a></li>
                     </ul>
                 </div>

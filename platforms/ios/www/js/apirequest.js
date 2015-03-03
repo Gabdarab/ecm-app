@@ -13,14 +13,15 @@ function getRequest(apiUrl, passData, callbackF){
 		success: function(_data, _textstatus, _jqXHR) {
 			console.log("GET_textstatus: " + _textstatus);
 			console.log("GET_success_jqXHR: " + _jqXHR.status);
-			callbackF(_data);
+			callbackF(_jqXHR.status, _data);
 		},
 
 		error: function(_jqXHR, _textstatus, _err) {
 			console.log("GET_error_jqXHR: " + _jqXHR.status);
 			console.log("GET_textstatus: " + _textstatus);
 			console.log("GET_error_err: " + _err);
-			// on error 3 mal wiederholen mit counter
+			callbackF(_jqXHR.status, _data);
+			//handle connection errors here
 		}
 	});
 }
@@ -39,7 +40,7 @@ function postRequest(apiUrl, passData, callbackF){
         //dataType: "json",
         success: function(_data, _textstatus, _jqXHR){
         	callbackF(_jqXHR.status,passData);
-        	//console.log("POST_data: " + _data.message);
+        	console.log("POST_data: " + _data.message);
 			console.log("POST_textstatus: " + _textstatus);
 			console.log("POST_jqXHR: " + _jqXHR.status);
         },
@@ -48,7 +49,7 @@ function postRequest(apiUrl, passData, callbackF){
         	console.log("POST_jqXHR: " + _jqXHR.status);
 			console.log("POST_textstatus: " + _textstatus);
 			console.log("POST_error_err: " + _err);
-			// on error 3 mal wiederholen mit counter
+			//handle connection errors here
         }
     });
 }
