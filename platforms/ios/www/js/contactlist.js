@@ -3,6 +3,9 @@ function addList(_jqXHL, contacts){
 	//testarray beinhaltet position und distanz der personen
 	if (_jqXHL === 200){
 
+		localStorage.removeItem("displayedContacts");
+		localStorage.setItem("displayedContacts",JSON.stringify(contacts));
+
 		$("#coupon-text").text("Beschreibung Angebot Mathäser.");
 		$("#contact-overview").attr("style","");
 
@@ -19,9 +22,17 @@ function addList(_jqXHL, contacts){
 			var HTMLformattedlistitem=HTMLlistitem.replace("%id%","entry"+sortedarray[item].position).replace("%name%",wholename).replace("%distance%",Math.round(sortedarray[item].distance*10)/10);
 			$("#contactlist").append(HTMLformattedlistitem);
 		};
+
+		contactsAreDislpayed = true;
+
 	}else{
 		//handling 500 and 503 error
 	};
+
+	if (contactsBeingViewed){
+		seenContacts();
+	}
+
 };
 
 function getDistanceInKm(lat1,lon1,lat2,lon2){
@@ -40,3 +51,31 @@ function getDistanceInKm(lat1,lon1,lat2,lon2){
 function deg2rad(deg){
 	return deg * (Math.PI/180)
 };
+
+
+function seenContacts(){
+
+	var clock = new Date();
+	var displayed = {
+		'contacts':JSON.parse(localStorage.getItem("displayedContacts")),
+		'seenTime': clock.getTime()
+	};
+
+	postRequest(apiPostSeenContacts, displayed, seenContactsCallback)
+	
+
+	//console.log("AAA:", displayed.contacts[0].vorname);
+	//console.log("BBB: ", displayed.seenTime);
+};
+
+function seenContactsCallback(jqXHR, data){
+	if(jqXHR===201){
+
+	}else{
+		console.log("jqXHR: "+ jqXHR);
+        console.log("data: "+ data);
+	};
+};
+
+
+

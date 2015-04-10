@@ -1,5 +1,10 @@
 
 function getRequest(apiUrl, passData, callbackF){
+	
+	if (apiUrl === apiGetContacts){
+		contactsAreDislpayed = false;
+	}
+
 	$.ajax({
 		type: "GET",
 		url: apiUrl,

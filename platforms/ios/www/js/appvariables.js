@@ -22,3 +22,8 @@ var apiGetUser = 'http://127.0.0.1:8000/getregistered';
 var dataGetUser = {
 		uuid : "uuidTEST" //JSON.parse(localStorage.getItem("user")).uuid
 	};
+
+var apiPostSeenContacts = 'http://127.0.0.1:8000/postseencontacts';
+
+var contactsAreDislpayed = false;
+var contactsBeingViewed = false;
