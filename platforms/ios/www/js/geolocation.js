@@ -5,10 +5,9 @@ function setlocation(){
 
 function geolocationSuccess(position) {
  	var user = JSON.parse(localStorage.getItem("user"));
-    var date = new Date()
- 	//add uuid for smartphones 
+    var date = new Date() 
  	var currentLocation = {
- 		//'uuid' : user.uuid,
+ 		'uuid' : device.uuid,
  		'latitude' : position.coords.latitude,
         'longitude' : position.coords.longitude,
         'accuracy' : position.coords.accuracy,

@@ -2,19 +2,21 @@
 document.addEventListener("deviceready", onDeviceReady(), false);
 
 function onDeviceReady(){
-	localStorage.removeItem("user");
+	//localStorage.removeItem("user");
 	homescreen();
 	
-	/*
+	
 	document.addEventListener("resume", onResume, false);
 	function onResume() {
-   		setTimeout( function() {
+   		//setTimeout( function() {
    			//??? posts same location as last time???
-          setlocation();
-          afterPush(); 
-        }, 0);
+          //setlocation();
+          //afterPush(); 
+        //}, 0);
+		var userBar = JSON.parse(localStorage.getItem("user"));
+		console.log("userBar.uuid: " + userBar.uuid);
 	}
-	*/
+	
 
 	///////////////////////////////////////////////////////////register new user
 	//submit registration button
@@ -27,13 +29,13 @@ function onDeviceReady(){
 			"angegebene Registrierungscode identisch mit dem in ihrer E-Mail?")===true){
 				var clock = new Date();
 				var user={
-					//"deviceuuid":device.uuid,
+					"deviceuuid":device.uuid,
 					"vorname":$("#textinput-vorname").val(),
 					"nachname":$("#textinput-nachname").val(),
 					"regcode":$("#textinput-regcode").val(),
-					//"devicemodel":device.model, 
-					//"deviceplatform":device.platform, 
-					//"deviceversion":device.version,
+					"devicemodel":device.model, 
+					"deviceplatform":device.platform, 
+					"deviceversion":device.version,
 					"timestamp" : clock.getTime() 
 					};
 				// post user details to server

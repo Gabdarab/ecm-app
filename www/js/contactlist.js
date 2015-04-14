@@ -4,7 +4,7 @@ function addList(_jqXHL, contacts){
 	if (_jqXHL === 200){
 
 		localStorage.removeItem("displayedContacts");
-		localStorage.setItem("displayedContacts",JSON.stringify(contacts));
+		localStorage.setItem("displayedContacts", JSON.stringify(contacts));
 
 		$("#coupon-text").text("Beschreibung Angebot Mathäser.");
 		$("#contact-overview").attr("style","");
